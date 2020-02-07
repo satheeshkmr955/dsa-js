@@ -1,0 +1,6 @@
+{
+  "editor.formatOnSave": true,
+  "vtools.autoHideBottomBar": false,
+  // "vtools.autoHideSideBar": false,
+  "vtools.autoHideDelay": 1
+}
