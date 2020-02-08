@@ -77,6 +77,7 @@ class LinkedList {
     if (!this.head.next) {
       return this;
     }
+    this.tail = this.head;
     let prev = this.head;
     let curr = prev.next;
     while (curr) {
@@ -101,4 +102,4 @@ myLinkedList.display();
 myLinkedList.reverse();
 myLinkedList.display();
 // console.log(JSON.stringify(myLinkedList, null, 1));
-// console.dir(myLinkedList, { depth: null });
+console.dir(myLinkedList, { depth: null });
