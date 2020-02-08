@@ -78,17 +78,35 @@ class DoublyLinkedList {
     deleteNode = undefined;
     this.length--;
   }
+
+  reverse() {
+    if (!this.head.next) {
+      return this;
+    }
+    let curr = this.head;
+    this.tail = this.head;
+    let temp = null;
+    while (curr) {
+      temp = curr.prev;
+      curr.prev = curr.next;
+      curr.next = temp;
+      curr = curr.prev;
+    }
+    this.head = temp.prev;
+  }
 }
 
-const myLinkedList = new DoublyLinkedList(10);
-myLinkedList.prepend(20);
-myLinkedList.append(5);
-myLinkedList.append(11);
+const myLinkedList = new DoublyLinkedList(2);
+myLinkedList.prepend(1);
+myLinkedList.append(3);
+myLinkedList.append(4);
 myLinkedList.display();
 myLinkedList.insert(1, 30);
 myLinkedList.insert(3000, 99);
 myLinkedList.display();
 myLinkedList.remove(1);
+myLinkedList.display();
+myLinkedList.reverse();
 myLinkedList.display();
 // console.log(JSON.stringify(myLinkedList, null, 1));
 console.dir(myLinkedList, { depth: null });
