@@ -89,6 +89,21 @@ class BST {
     return list;
   }
 
+  breadthFirstSearchR(queue, list) {
+    if (!queue.length) {
+      return list;
+    }
+    let currNode = queue.shift();
+    list.push(currNode.data);
+    if (currNode.left) {
+      queue.push(currNode.left);
+    }
+    if (currNode.right) {
+      queue.push(currNode.right);
+    }
+    return this.breadthFirstSearchR(queue, list);
+  }
+
   remove(data) {
     if (!this.root) {
       return this;
@@ -173,6 +188,7 @@ myTree.insert(179);
 myTree.insert(185);
 myTree.remove(170);
 console.log(myTree.breadthFirstSearch());
+console.log(myTree.breadthFirstSearchR([myTree.root], []));
 // myTree.insert(80);
 // myTree.insert(5);
 // console.log(myTree.lookup(1));
