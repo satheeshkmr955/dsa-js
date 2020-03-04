@@ -133,40 +133,47 @@ class BST {
       return false;
     }
   }
-  breadthFirstSearch() {
-    if (!this.root) {
-      return [];
+
+  DFSInOrder() {
+    return this.transverseInOrder(this.root, []);
+  }
+  transverseInOrder(currNode, arr) {
+    if (currNode.left) {
+      this.transverseInOrder(currNode.left, arr);
     }
-    let currNode = this.root;
-    let list = [];
-    let queue = [];
-    queue.push(currNode);
-    while (queue.length > 0) {
-      currNode = queue.shift();
-      list.push(currNode.data);
-      if (currNode.left) {
-        queue.push(currNode.left);
-      }
-      if (currNode.right) {
-        queue.push(currNode.right);
-      }
+    arr.push(currNode.data);
+    if (currNode.right) {
+      this.transverseInOrder(currNode.right, arr);
     }
-    return list;
+    return arr;
   }
 
-  breadthFirstSearchR(queue, list) {
-    if (!queue.length) {
-      return list;
-    }
-    let currNode = queue.shift();
-    list.push(currNode.data);
+  DFSPreOrder() {
+    return this.transversePreOrder(this.root, []);
+  }
+  transversePreOrder(currNode, arr) {
+    arr.push(currNode.data);
     if (currNode.left) {
-      queue.push(currNode.left);
+      this.transversePreOrder(currNode.left, arr);
     }
     if (currNode.right) {
-      queue.push(currNode.right);
+      this.transversePreOrder(currNode.right, arr);
     }
-    return this.breadthFirstSearchR(queue, list);
+    return arr;
+  }
+
+  DFSPostOrder() {
+    return this.transversePostOrder(this.root, []);
+  }
+  transversePostOrder(currNode, arr) {
+    if (currNode.left) {
+      this.transversePostOrder(currNode.left, arr);
+    }
+    if (currNode.right) {
+      this.transversePostOrder(currNode.right, arr);
+    }
+    arr.push(currNode.data);
+    return arr;
   }
 }
 
@@ -186,10 +193,10 @@ myTree.insert(1);
 // myTree.insert(179);
 // myTree.insert(185);
 // myTree.remove(170);
-console.log(JSON.stringify(myTree.breadthFirstSearch(), null, 0));
-console.log(
-  JSON.stringify(myTree.breadthFirstSearchR([myTree.root], []), null, 0)
-);
+
+console.log(JSON.stringify(myTree.DFSInOrder(), null, 0));
+console.log(JSON.stringify(myTree.DFSPreOrder(), null, 0));
+console.log(JSON.stringify(myTree.DFSPostOrder(), null, 0));
 
 //     9
 //  4     20
