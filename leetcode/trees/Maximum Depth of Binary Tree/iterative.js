@@ -24,7 +24,6 @@ var maxDepth = function(root) {
     height++;
     while (nodeCount > 0) {
       let node = queue.shift();
-      console.log(node);
       if (node.left) {
         queue.push(node.left);
       }
